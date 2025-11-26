@@ -1,0 +1,582 @@
+{
+  "meta": {
+    "origin": "https://openam-<tenant>/platform/?realm=alpha#/journeys",
+    "exportedBy": "ps@pingidentity.com",
+    "exportDate": "2025-11-26T11:07:33.505Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "AdminLogin",
+      "NormalLogin",
+      "TransactionalAuthZLogin"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "AdminLogin": {
+      "tree": {
+        "_id": "AdminLogin",
+        "_rev": "1988677972",
+        "identityResource": "managed/alpha_user",
+        "entryNodeId": "534352b3-1175-48e3-884c-206d15a2027c",
+        "innerTreeOnly": false,
+        "description": "Example tree to demo admin login for the transactional authorization blog",
+        "noSession": false,
+        "mustRun": false,
+        "enabled": true,
+        "transactionalOnly": false,
+        "uiConfig": {
+          "categories": "[\"Authentication\"]",
+          "annotations": "{\"forNodes\":{},\"structural\":[]}"
+        },
+        "nodes": {
+          "534352b3-1175-48e3-884c-206d15a2027c": {
+            "x": 136,
+            "y": 59,
+            "connections": {
+              "outcome": "44161337-cf27-46f4-b22a-9138e99dfb94"
+            },
+            "nodeType": "PageNode",
+            "displayName": "Page Node"
+          },
+          "5e710d74-b94c-45fe-b6fd-5ba0cf0fa944": {
+            "x": 717,
+            "y": 131,
+            "connections": {
+              "outcome": "2f3893f1-3360-45e6-96d4-ee7d1d7226cc"
+            },
+            "nodeType": "IncrementLoginCountNode",
+            "displayName": "Increment Login Count"
+          },
+          "44161337-cf27-46f4-b22a-9138e99dfb94": {
+            "x": 405,
+            "y": 90,
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "5e710d74-b94c-45fe-b6fd-5ba0cf0fa944"
+            },
+            "nodeType": "DataStoreDecisionNode",
+            "displayName": "Data Store Decision"
+          },
+          "2f3893f1-3360-45e6-96d4-ee7d1d7226cc": {
+            "x": 993,
+            "y": 134.76666259765625,
+            "connections": {
+              "outcome": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "nodeType": "SetSessionPropertiesNode",
+            "displayName": "Increase Admin Session Time"
+          }
+        },
+        "staticNodes": {
+          "startNode": {
+            "x": 50,
+            "y": 25
+          },
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 1316,
+            "y": 139
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 1320,
+            "y": 338
+          }
+        }
+      },
+      "nodes": {
+        "534352b3-1175-48e3-884c-206d15a2027c": {
+          "_id": "534352b3-1175-48e3-884c-206d15a2027c",
+          "_rev": "356740983",
+          "nodes": [
+            {
+              "_id": "e912bc4a-49a5-4c42-b679-4d72fe44dd72",
+              "nodeType": "ValidatedUsernameNode",
+              "displayName": "Platform Username"
+            },
+            {
+              "_id": "98dac7f5-6146-496d-8820-d253ca1a6be5",
+              "nodeType": "ValidatedPasswordNode",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {
+            "en": "New here? <a href=\"#/service/Registration\">Create an account</a><br><a href=\"#/service/ForgottenUsername\">Forgot username?</a><a href=\"#/service/ResetPassword\"> Forgot password?</a>"
+          },
+          "pageHeader": {
+            "en": "Sign In"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "5e710d74-b94c-45fe-b6fd-5ba0cf0fa944": {
+          "_id": "5e710d74-b94c-45fe-b6fd-5ba0cf0fa944",
+          "_rev": "-49571724",
+          "identityAttribute": "userName",
+          "_type": {
+            "_id": "IncrementLoginCountNode",
+            "name": "Increment Login Count",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "44161337-cf27-46f4-b22a-9138e99dfb94": {
+          "_id": "44161337-cf27-46f4-b22a-9138e99dfb94",
+          "_rev": "-1503382177",
+          "_type": {
+            "_id": "DataStoreDecisionNode",
+            "name": "Data Store Decision",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "2f3893f1-3360-45e6-96d4-ee7d1d7226cc": {
+          "_id": "2f3893f1-3360-45e6-96d4-ee7d1d7226cc",
+          "_rev": "767765057",
+          "properties": {},
+          "maxIdleTime": 60,
+          "maxSessionTime": 60,
+          "_type": {
+            "_id": "SetSessionPropertiesNode",
+            "name": "Set Session Properties",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "e912bc4a-49a5-4c42-b679-4d72fe44dd72": {
+          "_id": "e912bc4a-49a5-4c42-b679-4d72fe44dd72",
+          "_rev": "530856941",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "98dac7f5-6146-496d-8820-d253ca1a6be5": {
+          "_id": "98dac7f5-6146-496d-8820-d253ca1a6be5",
+          "_rev": "110615956",
+          "passwordAttribute": "password",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {},
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    },
+    "NormalLogin": {
+      "tree": {
+        "_id": "NormalLogin",
+        "_rev": "1966697339",
+        "identityResource": "managed/alpha_user",
+        "entryNodeId": "25817716-4b2a-4633-b64a-1a067b439ace",
+        "innerTreeOnly": false,
+        "description": "Example tree to demo normal login for the transactional authorization blog",
+        "noSession": false,
+        "mustRun": false,
+        "enabled": true,
+        "transactionalOnly": false,
+        "uiConfig": {
+          "categories": "[\"Authentication\"]",
+          "annotations": "{\"forNodes\":{},\"structural\":[]}"
+        },
+        "nodes": {
+          "e734ccf1-7ae6-4fc0-a0c0-e26f7015e527": {
+            "x": 717,
+            "y": 131,
+            "connections": {
+              "outcome": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "nodeType": "IncrementLoginCountNode",
+            "displayName": "Increment Login Count"
+          },
+          "25817716-4b2a-4633-b64a-1a067b439ace": {
+            "x": 136,
+            "y": 59,
+            "connections": {
+              "outcome": "359a9f78-870e-4a58-ac52-601fbab989f3"
+            },
+            "nodeType": "PageNode",
+            "displayName": "Page Node"
+          },
+          "359a9f78-870e-4a58-ac52-601fbab989f3": {
+            "x": 405,
+            "y": 90,
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "e734ccf1-7ae6-4fc0-a0c0-e26f7015e527"
+            },
+            "nodeType": "DataStoreDecisionNode",
+            "displayName": "Data Store Decision"
+          }
+        },
+        "staticNodes": {
+          "startNode": {
+            "x": 50,
+            "y": 25
+          },
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 1317,
+            "y": 136
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 1320,
+            "y": 338
+          }
+        }
+      },
+      "nodes": {
+        "e734ccf1-7ae6-4fc0-a0c0-e26f7015e527": {
+          "_id": "e734ccf1-7ae6-4fc0-a0c0-e26f7015e527",
+          "_rev": "-2089742471",
+          "identityAttribute": "userName",
+          "_type": {
+            "_id": "IncrementLoginCountNode",
+            "name": "Increment Login Count",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "25817716-4b2a-4633-b64a-1a067b439ace": {
+          "_id": "25817716-4b2a-4633-b64a-1a067b439ace",
+          "_rev": "-492907594",
+          "nodes": [
+            {
+              "_id": "16a06a6d-e0ee-4320-8743-4f9ac3ae841d",
+              "nodeType": "ValidatedUsernameNode",
+              "displayName": "Platform Username"
+            },
+            {
+              "_id": "0fb1d178-de7f-4bf5-ab55-720a309cb8bd",
+              "nodeType": "ValidatedPasswordNode",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {
+            "en": "New here? <a href=\"#/service/Registration\">Create an account</a><br><a href=\"#/service/ForgottenUsername\">Forgot username?</a><a href=\"#/service/ResetPassword\"> Forgot password?</a>"
+          },
+          "pageHeader": {
+            "en": "Sign In"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "359a9f78-870e-4a58-ac52-601fbab989f3": {
+          "_id": "359a9f78-870e-4a58-ac52-601fbab989f3",
+          "_rev": "1436000596",
+          "_type": {
+            "_id": "DataStoreDecisionNode",
+            "name": "Data Store Decision",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "16a06a6d-e0ee-4320-8743-4f9ac3ae841d": {
+          "_id": "16a06a6d-e0ee-4320-8743-4f9ac3ae841d",
+          "_rev": "-2147383915",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "0fb1d178-de7f-4bf5-ab55-720a309cb8bd": {
+          "_id": "0fb1d178-de7f-4bf5-ab55-720a309cb8bd",
+          "_rev": "1173279981",
+          "passwordAttribute": "password",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {},
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    },
+    "TransactionalAuthZLogin": {
+      "tree": {
+        "_id": "TransactionalAuthZLogin",
+        "_rev": "1054375385",
+        "identityResource": "managed/alpha_user",
+        "entryNodeId": "005e8420-7def-45a7-aef6-8efa2553a357",
+        "innerTreeOnly": false,
+        "description": "Example tree to demo the journey targeted by the transactional authorization policy specified in the blog",
+        "noSession": false,
+        "mustRun": false,
+        "enabled": true,
+        "transactionalOnly": false,
+        "uiConfig": {
+          "categories": "[\"Authentication\"]",
+          "annotations": "{\"forNodes\":{},\"structural\":[]}"
+        },
+        "nodes": {
+          "47f40a59-b310-4a83-91e7-8bd064de87de": {
+            "x": 717,
+            "y": 131,
+            "connections": {
+              "outcome": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "nodeType": "IncrementLoginCountNode",
+            "displayName": "Increment Login Count"
+          },
+          "67c35971-ff46-4eb7-904e-fa79e75daa0f": {
+            "x": 381,
+            "y": 89,
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "47f40a59-b310-4a83-91e7-8bd064de87de"
+            },
+            "nodeType": "DataStoreDecisionNode",
+            "displayName": "Data Store Decision"
+          },
+          "005e8420-7def-45a7-aef6-8efa2553a357": {
+            "x": 136,
+            "y": 59,
+            "connections": {
+              "outcome": "67c35971-ff46-4eb7-904e-fa79e75daa0f"
+            },
+            "nodeType": "PageNode",
+            "displayName": "Page Node"
+          }
+        },
+        "staticNodes": {
+          "startNode": {
+            "x": 50,
+            "y": 25
+          },
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 1089,
+            "y": 135
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 1085,
+            "y": 356
+          }
+        }
+      },
+      "nodes": {
+        "47f40a59-b310-4a83-91e7-8bd064de87de": {
+          "_id": "47f40a59-b310-4a83-91e7-8bd064de87de",
+          "_rev": "918863133",
+          "identityAttribute": "userName",
+          "_type": {
+            "_id": "IncrementLoginCountNode",
+            "name": "Increment Login Count",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "67c35971-ff46-4eb7-904e-fa79e75daa0f": {
+          "_id": "67c35971-ff46-4eb7-904e-fa79e75daa0f",
+          "_rev": "2092692615",
+          "_type": {
+            "_id": "DataStoreDecisionNode",
+            "name": "Data Store Decision",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "005e8420-7def-45a7-aef6-8efa2553a357": {
+          "_id": "005e8420-7def-45a7-aef6-8efa2553a357",
+          "_rev": "581160017",
+          "nodes": [
+            {
+              "_id": "4b115fd4-7a7f-4cc4-b2e1-64e59cfbec68",
+              "nodeType": "ValidatedUsernameNode",
+              "displayName": "Platform Username"
+            },
+            {
+              "_id": "74d8230f-6b1c-44bf-80cb-81978472ebd2",
+              "nodeType": "ValidatedPasswordNode",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {
+            "en": "New here? <a href=\"#/service/Registration\">Create an account</a><br><a href=\"#/service/ForgottenUsername\">Forgot username?</a><a href=\"#/service/ResetPassword\"> Forgot password?</a>"
+          },
+          "pageHeader": {
+            "en": "Sign In"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "4b115fd4-7a7f-4cc4-b2e1-64e59cfbec68": {
+          "_id": "4b115fd4-7a7f-4cc4-b2e1-64e59cfbec68",
+          "_rev": "-1400600315",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "74d8230f-6b1c-44bf-80cb-81978472ebd2": {
+          "_id": "74d8230f-6b1c-44bf-80cb-81978472ebd2",
+          "_rev": "-946150105",
+          "passwordAttribute": "password",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {},
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}
