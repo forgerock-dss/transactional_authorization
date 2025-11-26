@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PolicySet xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicySetId="/alpha:2025.11.26.10.04.33.203" Version="2025.11.26.10.04.33.203" PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+    <Target/>
+    <Policy PolicyId="makePayment" Version="2025.11.26.10.04.15.274" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+        <Description></Description>
+        <Target>
+            <AnyOf>
+                <AllOf>
+                    <Match MatchId="urn:sun:opensso:entitlement:json-subject-match">
+                        <AttributeValue DataType="urn:sun:opensso:entitlement:json-subject-type:org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers">{}</AttributeValue>
+                        <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:sun:opensso:entitlement:json-subject" DataType="urn:sun:opensso:entitlement:json-subject-type:org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers" MustBePresent="true"/>
+                    </Match>
+                </AllOf>
+            </AnyOf>
+            <AnyOf>
+                <AllOf>
+                    <Match MatchId="urn:sun:opensso:entitlement:resource-match:application:transactionalAuthZ">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">https://api.bankingexample.com:443/makepayment</AttributeValue>
+                        <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </Match>
+                </AllOf>
+            </AnyOf>
+            <AnyOf>
+                <AllOf>
+                    <Match MatchId="urn:sun:opensso:application-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">transactionalAuthZ</AttributeValue>
+                        <AttributeDesignator Category="urn:sun:opensso:application-category" AttributeId="urn:sun:opensso:application-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
+                    </Match>
+                </AllOf>
+            </AnyOf>
+            <AnyOf>
+                <AllOf>
+                    <Match MatchId="urn:sun:opensso:entitlement:action-match:application:transactionalAuthZ">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">POST</AttributeValue>
+                        <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </Match>
+                </AllOf>
+            </AnyOf>
+        </Target>
+        <VariableDefinition VariableId="sun.opensso.entitlement.applicationName">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">transactionalAuthZ</AttributeValue>
+        </VariableDefinition>
+        <VariableDefinition VariableId="sun.opensso.privilege.createdBy">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">id=e36bc873-6971-4af7-9a1c-dbecd11e79eb,ou=user,ou=am-config</AttributeValue>
+        </VariableDefinition>
+        <VariableDefinition VariableId="sun.opensso.privilege.lastModifiedBy">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">id=e36bc873-6971-4af7-9a1c-dbecd11e79eb,ou=user,ou=am-config</AttributeValue>
+        </VariableDefinition>
+        <VariableDefinition VariableId="sun.opensso.privilege.creationDate">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#dateTime">2025-11-26T09:34:58.027</AttributeValue>
+        </VariableDefinition>
+        <VariableDefinition VariableId="sun.opensso.privilege.lastModifiedDate">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#dateTime">2025-11-26T10:04:15.274</AttributeValue>
+        </VariableDefinition>
+        <Rule RuleId="null:permit-rule" Effect="Permit">
+            <Description>Permit Rule</Description>
+            <Target>
+                <AnyOf>
+                    <AllOf>
+                        <Match MatchId="urn:sun:opensso:entitlement:action-match:application:transactionalAuthZ">
+                            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">POST</AttributeValue>
+                            <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                        </Match>
+                    </AllOf>
+                </AnyOf>
+            </Target>
+            <Condition>
+                <Apply FunctionId="urn:sun:opensso:entitlement:json-subject-and-condiiton-satisfied">
+                    <AttributeValue DataType="urn:sun:opensso:entitlement:json-subject-type:org.forgerock.openam.entitlement.conditions.subject.AuthenticatedUsers" privilegeComponent="entitlementSubject">{}</AttributeValue>
+                    <AttributeValue DataType="urn:sun:opensso:entitlement:json-condition-type:org.forgerock.openam.entitlement.conditions.environment.TransactionCondition" privilegeComponent="entitlementCondition">{"authenticationStrategy":"AuthenticateToTreeConditionAdvice","strategySpecifier":"TransactionalAuthZLogin"}</AttributeValue>
+                </Apply>
+            </Condition>
+        </Rule>
+    </Policy>
+</PolicySet>
